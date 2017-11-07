@@ -12,6 +12,7 @@
 * Lead IT Solutions Architect for Mitel
 * Collaborator for [PowerShell/PowerShell](https://github.com/PowerShell/PowerShell) repository
 * PowerShell Core Contributor for Web Cmdlets
+* Author of [Get-PowerShellBlog](https://get-powershellblog.blogspot.com/)
 
 ---
 
