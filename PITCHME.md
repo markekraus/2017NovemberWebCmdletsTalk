@@ -16,7 +16,7 @@
 
 ---
 
-@title[Who am I?]
+@title[Topics]
 
 ### Topics
 
@@ -24,4 +24,34 @@
 * New Features
 * Deprecated/missing Features
 
+---
+
+@title[HttpWebRequest to HttpClient]
+
+### Basic Parsing Only
+```powershell
+$url = 'https://www.google.com'
+$Result = Invoke-WebRequest $url
+$Result.GetType().Name
+```
+```none
+BasicHtmlWebResponseObject
+```
+---
+
+@title[HttpWebRequest to HttpClient]
+
+### Basic Parsing Only
+```powershell
+$Result.Links.Count
+$Result.Images.Count
+$null -eq $Result.Forms
+$null -eq $Result.ParsedHtml
+```
+```none
+34
+1
+true
+true
+```
 ---
