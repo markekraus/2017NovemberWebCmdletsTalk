@@ -21,8 +21,8 @@ PowerShell Core 6.0.0-Beta.9
 ### Topics
 
 * Move from `HttpWebRequest` to `HttpClient`
-* New Features
-* Deprecated/missing Features
+* Deprecated and/or Missing Features
+* New Features and Fixes
 
 ---
 
@@ -33,7 +33,7 @@ PowerShell Core 6.0.0-Beta.9
 ---
 @title[HttpWebRequest Vs HttpClient: HttpWebRequest]
 
-### HttpWebRequest
+### `HttpWebRequest`
 
 * Older API
 * Slightly less performant
@@ -42,7 +42,7 @@ PowerShell Core 6.0.0-Beta.9
 ---
 @title[HttpWebRequest Vs HttpClient: HttpClient]
 
-### HttpClient
+### `HttpClient`
 
 * More like a Headless Web Browser
 * Better fit for Web Cmdlets
@@ -52,21 +52,22 @@ PowerShell Core 6.0.0-Beta.9
   * Session level settings
 ---
 
-@title[HttpWebRequest Vs HttpClient: Consequences]
+@title[Consequences of HttpClient]
 
-### Consequences of Change to HttpClient
+### Consequences of `HttpClient`
 * Strict Request Headers parsing default
 * Use `-SkipHeaderValidation` to bypass for `-Headers` and `-UserAgent`
 
 ---
-### Consequences of Change to HttpClient
-@title[HttpWebRequest Vs HttpClient: Consequences (cont.)]
+@title[Consequences of HttpClient (cont.)]
+
+### Consequences of `HttpClient`
 * `BasicHtmlWebResponseObject.BaseResponse` changed from `HttpWebResponse` to `HttpResponseMessage`
 * Response Headers changed from `WebHeaderCollection` to `HttpHeaders`
 * `BasicHtmlWebResponseObject.Headers` values are now `String[]` instead of `String`
 * Content related Response Headers separated
 ---
-
+@title[Consequences of HttpClient (cont.)]
 ```powershell
 $url = 'https://www.google.com'
 $Result = Invoke-WebRequest $url
@@ -91,7 +92,10 @@ False
 ```
 ---
 
+
+
 @title[Missing Features]
+## Missing Features
 ---
 
 @title[Basic Parsing Only]
@@ -123,3 +127,13 @@ true
 true
 ```
 ---
+
+@title[Same Name Response Headers]
+### Same Name Response Headers
+```none
+X-Header: Value1
+X-Header: Value2
+```
+* `BasicHtmlWebResponseObject.Headers` now an array
+* `BasicHtmlWebResponseObject.RawContent` now properly displays
+
