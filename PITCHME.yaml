@@ -1,6 +1,7 @@
-theme : night
+theme : black
 #theme-override : 
 #background : 
 #logo : 
 transition : none
 published : true
+highlight : tomorrow-night-eighties
