@@ -1,7 +1,7 @@
 @title[Introduction]
 ## PowerShell Core Web Cmdlets In Depth
 #### November 2017 
-#### @ The next North Texas PC Users Group (NTPCUG) PowerShell SIG
+#### @ North Texas PC Users Group (NTPCUG) PowerShell SIG
 
 PowerShell Core 6.0.0-Beta.9
 
@@ -58,7 +58,8 @@ PowerShell Core 6.0.0-Beta.9
 
 @title[Strict Request Headers Parsing]
 
-### Consequences of `HttpClient`
+### Strict Request Headers Parsing
+
 * Strict Request Headers parsing default
 * Use `-SkipHeaderValidation` to bypass for `-Headers` and `-UserAgent`
 * [#4085](https://github.com/PowerShell/PowerShell/pull/4085) and [#4479](https://github.com/PowerShell/PowerShell/pull/4479)
@@ -67,31 +68,34 @@ PowerShell Core 6.0.0-Beta.9
 
 @title[Strict Request Headers Parsing (cont.)]
 ```powershell
-$headers = @{}
-$headers.Add("if-match","12345")
-Invoke-WebRequest -Uri "http://httpbin.org/headers" -Headers $headers
+$Params = @{
+    Headers = @{"if-match" ="12345"}
+    Uri = "http://httpbin.org/headers"
+}
+Invoke-RestMethod @Params
 ```
 ```none
 Invoke-WebRequest : The format of value '12345' is invalid.
-At line:1 char:1
-+ Invoke-WebRequest -Uri "http://httpbin.org/headers" -Headers $headers
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:) [Invoke-WebRequest], FormatException
-    + FullyQualifiedErrorId : System.FormatException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
 ```
 ```powershell
-$headers = @{}
-$headers.Add("if-match","12345")
-Invoke-WebRequest -Uri "http://httpbin.org/headers" -Headers $headers -SkipHeaderValidation
+$Params = @{
+    Headers = @{"if-match" ="12345"}
+    Uri = "http://httpbin.org/headers"
+    SkipHeaderValidation = $true
+}
+Invoke-RestMethod @Params
 ```
 
 ---
 
 @title[Strict Request Headers Parsing (cont.)]
 #### For backwards compatibility:
+
 ```powershell
-$PSDefaultParameterValues['Invoke-WebRequest:SkipHeaderValidation'] = $true
-$PSDefaultParameterValues['Invoke-RestMethod:SkipHeaderValidation'] = $true
+$command = 'Invoke-WebRequest:SkipHeaderValidation'
+$PSDefaultParameterValues[$command] = $true
+$command = 'Invoke-RestMethod:SkipHeaderValidation'
+$PSDefaultParameterValues[$command] = $true
 ```
 
 ---
@@ -140,38 +144,34 @@ $Result = Invoke-WebRequest $url
 [int]$Expires = $Result.Headers.'Expires'
 $Expires
 ```
-#### Windows PowerShell 5.1
+Windows PowerShell 5.1:
 ```none
 -1
 ```
-#### PowerShell Core 6.0.0-Beta.9
+PowerShell Core 6.0.0-Beta.9:
 ```none
-Cannot convert the "System.String[]" value of type "System.String[]" to type "System.Int32".
-At line:1 char:1
-+ [int]$Expires = $Result.Headers.'Expires'
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : MetadataError: (:) [], ArgumentTransformationMetadataException
-    + FullyQualifiedErrorId : RuntimeException
+Cannot convert the "System.String[]" value of type 
+"System.String[]" to type "System.Int32".
 ```
 
 ---
 
 @title[Watchout for Headers (cont.)]
 #### For backwards compatibility:
-* Comma Join
+Comma Join
 ```powershell
 [int]$Expires = $Result.Headers.'Expires' -join ','
 ```
-* `Select-Object`
+`Select-Object`
 ```powershell
-[int]$Expires = $Result.Headers.'Expires' | Select-Object -First 1
+[int]$Expires = $Result.Headers.'Expires' |  
+    Select-Object -First 1
 ```
-* Avoid index access:
+Avoid index access:
 ```powershell
 [int]$Expires = $Result.Headers.'Expires'[0]
-$Expires
 ```
-#### Windows PowerShell 5.1
+Windows PowerShell 5.1:
 ```none
 45
 ```
@@ -195,6 +195,8 @@ $Expires
 ---
 
 @title[Basic Parsing Only (cont.)]
+### Basic Parsing Only
+
 ```powershell
 $url = 'https://www.google.com'
 $Result = Invoke-WebRequest $url
@@ -208,7 +210,8 @@ BasicHtmlWebResponseObject
 
 @title[Basic Parsing Only (cont.)]
 ### Basic Parsing Only
-* Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
+* `Forms` `ParsedHtml` Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
+
 ```powershell
 $Result.Links.Count
 $Result.Images.Count
@@ -232,8 +235,6 @@ true
 
 ---
 
----
-
 @title[macOS SSL/TLS/Certificate Partial Feature Support]
 ### macOS SSL/TLS/Certificate Partial Feature Support
 * CoreFX wraps `curl`
@@ -253,9 +254,8 @@ true
 ### Authentication
 * `-Authentication` or `-Auth` Added with support for:
   * Basic
-  * Bearer
+  * Bearer / OAuth
   * None (default)
-  * OAuth
 * Explicit Authentication
 * Possibly more in the future
 * [5052](https://github.com/PowerShell/PowerShell/pull/5052)
@@ -269,10 +269,11 @@ true
 * Uses `-Auth Basic`
 * Requires `-Credential` 
 * Requires a `PSCredential`
+
 ```powershell
 $Credential = Get-Credential
 $uri = 'https://httpbin.org/hidden-basic-auth/user/passwd'
-Invoke-RestMethod -Authentication Basic -Credential $Credential -Uri $uri
+Invoke-RestMethod -Auth Basic -Cred $Credential -Uri $uri
 ```
 
 ---
@@ -283,10 +284,11 @@ Invoke-RestMethod -Authentication Basic -Credential $Credential -Uri $uri
 * Uses `-Auth OAuth` or `-Auth Bearer`
 * Requires `-Token`
 * Requires a `SecureString`
+
 ```powershell
-$Token = Read-Host -AsSecureString -Prompt "Enter OAuth Access Token"
+$Token = Read-Host -AsSecureString -Prompt "Token"
 $uri = 'https://httpbin.org/headers'
-Invoke-RestMethod -Authentication Basic -Token $Token -Uri $uri
+Invoke-RestMethod -Auth Basic -Token $Token -Uri $uri
 ```
 
 ---
@@ -310,6 +312,7 @@ AllowUnencryptedAuthentication parameter.
 ### Bypass Auth Errors with -AllowUnencryptedAuthentication
 * !!! USE HTTPS !!!
 * But when you can't, use `-AllowUnencryptedAuthentication`
+
 ```powershell
 $Credential = Get-Credential
 $uri = 'http://google.com'
