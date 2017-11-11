@@ -52,14 +52,46 @@ PowerShell Core 6.0.0-Beta.9
   * Session level settings
 ---
 
-@title[Consequences of HttpClient]
+@title[Strict Request Headers Parsing]
 
 ### Consequences of `HttpClient`
 * Strict Request Headers parsing default
 * Use `-SkipHeaderValidation` to bypass for `-Headers` and `-UserAgent`
+* [#4085](https://github.com/PowerShell/PowerShell/pull/4085) and [#4479](https://github.com/PowerShell/PowerShell/pull/4479)
 
 ---
-@title[Consequences of HttpClient (cont.)]
+@title[Strict Request Headers Parsing (cont.)]
+```powershell
+$headers = @{}
+$headers.Add("if-match","12345")
+Invoke-WebRequest -Uri "http://httpbin.org/headers" -Headers $headers
+```
+```none
+Invoke-WebRequest : The format of value '12345' is invalid.
+At line:1 char:1
++ Invoke-WebRequest -Uri "http://httpbin.org/headers" -Headers $headers
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Invoke-WebRequest], FormatException
+    + FullyQualifiedErrorId : System.FormatException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+```
+```powershell
+$headers = @{}
+$headers.Add("if-match","12345")
+Invoke-WebRequest -Uri "http://httpbin.org/headers" -Headers $headers -SkipHeaderValidation
+```
+
+---
+
+@title[Strict Request Headers Parsing (cont.)]
+#### For backwards compatibility:
+```powershell
+$PSDefaultParameterValues['Invoke-WebRequest:SkipHeaderValidation'] = $true
+$PSDefaultParameterValues['Invoke-RestMethod:SkipHeaderValidation'] = $true
+```
+
+---
+
+@title[Move from HttpWebResponse to HttpResponseMessage]
 
 ### Consequences of `HttpClient`
 * `BasicHtmlWebResponseObject.BaseResponse` changed from `HttpWebResponse` to `HttpResponseMessage`
@@ -67,7 +99,8 @@ PowerShell Core 6.0.0-Beta.9
 * `BasicHtmlWebResponseObject.Headers` values are now `String[]` instead of `String`
 * Content related Response Headers separated
 ---
-@title[Consequences of HttpClient (cont.)]
+
+@title[Move from HttpWebResponse to HttpResponseMessage (cont.)]
 ```powershell
 $url = 'https://www.google.com'
 $Result = Invoke-WebRequest $url
@@ -92,7 +125,48 @@ False
 ```
 ---
 
-
+@title[Watchout for Headers]
+#### Watch out for Headers as an array:
+```powershell
+$url = 'https://www.google.com'
+$Result = Invoke-WebRequest $url
+[int]$Expires = $Result.Headers.'Expires'
+$Expires
+```
+#### Windows PowerShell 5.1
+```none
+-1
+```
+#### PowerShell Core 6.0.0-Beta.9
+```none
+Cannot convert the "System.String[]" value of type "System.String[]" to type "System.Int32".
+At line:1 char:1
++ [int]$Expires = $Result.Headers.'Expires'
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : MetadataError: (:) [], ArgumentTransformationMetadataException
+    + FullyQualifiedErrorId : RuntimeException
+```
+---
+@title[Watchout for Headers (cont.)]
+#### For backwards compatibility:
+* Comma Join
+```powershell
+[int]$Expires = $Result.Headers.'Expires' -join ','
+```
+* `Select-Object`
+```powershell
+[int]$Expires = $Result.Headers.'Expires' | Select-Object -First 1
+```
+* Avoid index access:
+```powershell
+[int]$Expires = $Result.Headers.'Expires'[0]
+$Expires
+```
+#### Windows PowerShell 5.1
+```none
+45
+```
+---
 
 @title[Missing Features]
 ## Missing Features
@@ -112,8 +186,8 @@ BasicHtmlWebResponseObject
 ---
 
 @title[HttpWebRequest to HttpClient]
-
 ### Basic Parsing Only
+* Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
 ```powershell
 $Result.Links.Count
 $Result.Images.Count
@@ -137,3 +211,10 @@ X-Header: Value2
 * `BasicHtmlWebResponseObject.Headers` now an array
 * `BasicHtmlWebResponseObject.RawContent` now properly displays
 
+---
+
+@title[Auth Errors on Non-HTTPS]
+
+---
+
+@title[macOS SSL/TLS/Certificate partial support]
