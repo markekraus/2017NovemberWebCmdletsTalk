@@ -268,6 +268,8 @@ true
 
 @title[No Custom Certificate Validation Support]
 
+### No Custom Certificate Validation Support
+
 * Relied on `System.Net.ServicePointManager`
 * `HttpClient` implements on `HttpClientHandler.ServerCertificateCustomValidationCallback`
 * Targeting Support in 6.1.0
@@ -357,7 +359,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
   * None (default)
 * Explicit Authentication
 * Possibly more in the future
-* [5052](https://github.com/PowerShell/PowerShell/pull/5052)
+* [#5052](https://github.com/PowerShell/PowerShell/pull/5052)
 * [https://get-powershellblog.blogspot.com/2017/10/new-powershell-core-feature-basic-and.html](https://get-powershellblog.blogspot.com/2017/10/new-powershell-core-feature-basic-and.html)
 
 ---
@@ -415,9 +417,13 @@ AllowUnencryptedAuthentication parameter.
 * But when you can't, use `-AllowUnencryptedAuthentication`
 
 ```powershell
-$Credential = Get-Credential
-$uri = 'http://google.com'
-Invoke-RestMethod -Auth Basic -Cred $Credential -Uri $uri -AllowUnencryptedAuthentication
+$Params = @{
+    Authentication = 'Basic'
+    Credential = Get-Credential
+    uri = 'http://google.com'
+    AllowUnencryptedAuthentication = $true
+}
+Invoke-RestMethod @Params
 ```
 
 ---
@@ -430,6 +436,7 @@ X-Header: Value2
 ```
 * `BasicHtmlWebResponseObject.Headers` now an array
 * `BasicHtmlWebResponseObject.RawContent` now properly displays
+* [#4494](https://github.com/PowerShell/PowerShell/pull/4494)
 
 ---
 
@@ -448,9 +455,8 @@ X-Header: Value2
 
 ### -ResponseHeadersVariable on Invoke-RestMethod
 
-* Some APIs return useful and/or critical Response Headers
+* APIs return useful Response Headers
 * Windows PowerShell `Invoke-RestMethod` has no access to Response Headers
-* Would require fall back to `Invoke-WebRequest` and manual object serialization. 
 * `-ResponseHeadersVariable` (`-RHV`) works similar to `-SessionVariable`
 * Same as `BasicHtmlWebResponseObject.Headers`
 * [#4888](https://github.com/PowerShell/PowerShell/pull/4888)
@@ -569,6 +575,7 @@ Test
 
 * By passes all certificate checks
 * Unsafe, but currently the only option for untrusted certs.
+* [#2006](https://github.com/PowerShell/PowerShell/pull/2006)
 
 ```powershell
 $uri = 'https://expired.badssl.com/'
@@ -581,7 +588,7 @@ Invoke-RestMethod -uri $uri -SkipCertificateCheck
 
 ### Link Header Pagination
 
-* RFC-5988 Relation `Link` Response header Header 
+* RFC-5988 Relation `Link` Response Header 
 * `Invoke-RestMethod -FollowRelLink`
 * Follows to "next" links
 * `Invoke-RestMethod -MaximumFollowRelLink <count>`
@@ -641,8 +648,8 @@ application/json done
 ### Thanks!
 
 ![Rin Avatar](img/rin.jpg)
-[@markekraus on Twitter](https://twitter.com/markekraus)
-[markekraus on GitHub](https://github.com/markekraus)
-[/u/markekraus](https://www.reddit.com/user/markekraus/)
-[@markekraus on Poshcode Slack](http://slack.poshcode.org/)
-[http://get-powershellblog.blogspot.com/](http://get-powershellblog.blogspot.com/)
+* [@markekraus on Twitter](https://twitter.com/markekraus)
+* [markekraus on GitHub](https://github.com/markekraus)
+* [/u/markekraus](https://www.reddit.com/user/markekraus/)
+* [@markekraus on Poshcode Slack](http://slack.poshcode.org/)
+* [http://get-powershellblog.blogspot.com/](http://get-powershellblog.blogspot.com/)
