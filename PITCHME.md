@@ -23,7 +23,7 @@ PowerShell Core 6.0.0-Beta.9
 ### Topics
 
 * Move from `HttpWebRequest` to `HttpClient`
-* Deprecated and/or Missing Features
+* Deprecated/Missing Features and Issues
 * New Features and Fixes
 
 ---
@@ -178,8 +178,21 @@ Windows PowerShell 5.1:
 
 ---
 
-@title[Missing Features]
-## Missing Features
+@title[No ServicePointManager Support]
+### No ServicePointManager Support
+
+None of these have any affect:
+```powershell
+[Net.ServicePointManager]::SecurityProtocol
+[Net.ServicePointManager]::ServerCertificateValidationCallback
+[Net.ServicePointManager]::MaxServicePoints
+[Net.ServicePointManager]::MaxServicePointIdleTime
+```
+
+---
+
+@title[Missing Features and Issue]
+## Missing Features and Issue
 
 ---
 
@@ -210,7 +223,7 @@ BasicHtmlWebResponseObject
 
 @title[Basic Parsing Only (cont.)]
 ### Basic Parsing Only
-* `Forms` `ParsedHtml` Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
+* `Forms` and `ParsedHtml` Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
 
 ```powershell
 $Result.Links.Count
@@ -244,8 +257,93 @@ true
 
 ---
 
+@title[No SSL 3.0 Support]
+
+### No SSL 3.0 support
+* SSL 3.0 Deprecated
+* TLS 1.0, 1.1, 1.2 supported
+* No TLS 1.3/2.0 on any platforms yet
+
+---
+
+@title[No Custom Certificate Validation Support]
+
+* Relied on `System.Net.ServicePointManager`
+* `HttpClient` implements on `HttpClientHandler.ServerCertificateCustomValidationCallback`
+* Targeting Support in 6.1.0
+* [#4899](https://github.com/PowerShell/PowerShell/issues/4899) & [#4970](https://github.com/PowerShell/PowerShell/pull/4970)
+
+---
+
 @title[New Features and Fixes]
 ## New Features and Fixes
+
+---
+
+@title[New Parameters in Both]
+
+### New Parameters in Both
+
+* AllowUnencryptedAuthentication 
+* Authentication
+* CustomMethod
+* NoProxy
+* PreserveAuthorizationOnRedirect
+
+---
+
+@title[New Parameters in Both (cont.)]
+
+### New Parameters in Both (cont.)
+
+* SkipCertificateCheck
+* SkipHeaderValidation
+* SslProtocol *
+* Token
+---
+
+@title[New Parameters in Invoke-RestMethod]
+
+### New Parameters in 
+### Invoke-WebRequest
+
+* FollowRelLink
+* MaximumFollowRelLink
+* ResponseHeadersVariable
+
+---
+
+@title[User-Agent Change]
+
+### User-Agent Changes
+
+Windows PowerShell 5.1:
+```none
+Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) 
+ WindowsPowerShell/5.1.15063.674
+```
+6.0.0-beta.9 Windows:
+```none
+Mozilla/5.0 (Windows NT 10.0; Microsoft Windows
+ 10.0.15063; en-US) PowerShell/6.0.0
+```
+
+---
+
+6.0.0-beta.9 Linux:
+```none
+Mozilla/5.0 (Linux; Linux 4.4.0-96-generic 
+ #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017;
+  en-US) PowerShell/6.0.0
+```
+6.0.0-beta.9 macOS:
+```none
+Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
+ Kernel Version 17.0.0: Thu Aug 24 21:48:19
+  PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64;
+ ) PowerShell/6.0.0
+```
+[#4914](https://github.com/PowerShell/PowerShell/pull/4914), [#4937](https://github.com/PowerShell/PowerShell/pull/4937), [#5256](https://github.com/PowerShell/PowerShell/pull/5256)
 
 ---
 
@@ -301,8 +399,10 @@ $uri = 'http://google.com'
 Invoke-RestMethod -Auth Basic -Cred $Credential -Uri $uri 
 ```
 ```none
-Invoke-RestMethod : The cmdlet cannot protect plain text secrets sent over unencrypted connections. To supress this
-warning and send plain text secrets over unencrypted networks, reissue the command specifying the
+Invoke-RestMethod : The cmdlet cannot protect plain text
+secrets sent over unencrypted connections. To supress this
+warning and send plain text secrets over unencrypted networks,
+reissue the command specifying the
 AllowUnencryptedAuthentication parameter.
 ```
 
@@ -332,5 +432,73 @@ X-Header: Value2
 
 ---
 
+@title[BasicHtmlWebResponseObject.Headers Performance Enhancement]
+
+### BasicHtmlWebResponseObject.
+### Headers Performance Enhancement
+
+* Headers dictionary builds only once on first access
+* Windows PowerShell creates a new dictionary on every access
+* [#4853](https://github.com/PowerShell/PowerShell/pull/4853)
+
+---
+
+@title[-ResponseHeadersVariable on Invoke-RestMethod]
+
+### -ResponseHeadersVariable on Invoke-RestMethod
+
+* Some APIs return useful and/or critical Response Headers
+* Windows PowerShell `Invoke-RestMethod` has no access to Response Headers
+* Would require fall back to `Invoke-WebRequest` and manual object serialization. 
+* `-ResponseHeadersVariable` (`-RHV`) works similar to `-SessionVariable`
+* Same as `BasicHtmlWebResponseObject.Headers`
+* [#4888](https://github.com/PowerShell/PowerShell/pull/4888)
+
+---
+
+@title[-ResponseHeadersVariable on Invoke-RestMethod (cont.)]
+
+```powershell
+$Params = @{
+    Uri = 'https://httpbin.org/get'
+    ResponseHeadersVariable = 'RHV'
+}
+$Res = Invoke-RestMethod @Params
+$RHV
+```
+```none
+Key                              Value
+---                              -----
+Connection                       {keep-alive}
+Date                             {Sun, 12 Nov 2017 15:23:57 GMT}
+Via                              {1.1 vegur}
+Server                           {meinheld/0.6.1}
+Access-Control-Allow-Origin      {*}
+Access-Control-Allow-Credentials {true}
+X-Powered-By                     {Flask}
+X-Processed-Time                 {0.000648021697998}
+Content-Length                   {266}
+Content-Type                     {application/json}
+```
+
+---
+
+@title[-CustomMethod Parameter]
+
+### -CustomMethod Parameter
+
+* For custom request methods not supported by `-Method`
+* [#3142](https://github.com/PowerShell/PowerShell/pull/3142)
+
+```powershell
+$uri = 'http://http.lee.io/method'
+Invoke-RestMethod -uri $uri -CustomMethod 'PURIFY' | 
+    Select-Object -Expand Output
+```
+```none
+method
+------
+PURIFY
+```
 
 
