@@ -271,6 +271,7 @@ true
 * Relied on `System.Net.ServicePointManager`
 * `HttpClient` implements on `HttpClientHandler.ServerCertificateCustomValidationCallback`
 * Targeting Support in 6.1.0
+* `-SkipCertificateCheck` only option for now
 * [#4899](https://github.com/PowerShell/PowerShell/issues/4899) & [#4970](https://github.com/PowerShell/PowerShell/pull/4970)
 
 ---
@@ -483,6 +484,30 @@ Content-Type                     {application/json}
 
 ---
 
+@title[-SslProtocol Parameter]
+### -SslProtocol Parameter
+
+* Supports
+  * Default (TLS 1.0, TLS 1.1, and TLS 2.0 )
+  * Tls - TLS 1.0
+  * Tls11 - TLS 1.1
+  * Tls12 - TLS 1.2
+* `Flags` can support multiple
+* [#5329](https://github.com/PowerShell/PowerShell/pull/5329)
+
+---
+
+@title[-SslProtocol Parameter (cont.)]
+### -SslProtocol Parameter *
+
+```powershell
+$uri = 'https://google.com'
+Invoke-WebRequest -uri $uri -SslProtocol 'Ts12'
+Invoke-WebRequest -uri $uri -SslProtocol 'Ts12, Tls11'
+```
+
+---
+
 @title[-CustomMethod Parameter]
 
 ### -CustomMethod Parameter
@@ -501,4 +526,123 @@ method
 PURIFY
 ```
 
+---
 
+@title[-NoProxy Parameter]
+
+### -NoProxy Parameter
+* Bypass a default proxy if one is set on the system
+* [#3447](https://github.com/PowerShell/PowerShell/pull/3447)
+
+```powershell
+$uri = 'http://http.lee.io/method'
+Invoke-RestMethod -uri $uri -NoProxy
+```
+
+---
+
+@title[-PreserveAuthorizationOnRedirect Parameter]
+
+### -PreserveAuthorizationOnRedirect Parameter
+
+* Allows `Authorization` header to be sent when request is redirected.
+* [#3885](https://github.com/PowerShell/PowerShell/pull/3885)
+
+```powershell
+$Params = @{
+    Uri = 'https://httpbin.org/redirect-to?url=/get'
+    Headers = @{Authorization = 'Test'}
+    PreserveAuthorizationOnRedirect = $true
+}
+$res = Invoke-RestMethod @Params
+$res.headers.Authorization
+```
+```none
+Test
+```
+
+---
+
+@title[-SkipCertificateCheck Parameter]
+
+### -SkipCertificateCheck Parameter
+
+* By passes all certificate checks
+* Unsafe, but currently the only option for untrusted certs.
+
+```powershell
+$uri = 'https://expired.badssl.com/'
+Invoke-RestMethod -uri $uri -SkipCertificateCheck
+```
+
+---
+
+@title[Link Header Pagination]
+
+### Link Header Pagination
+
+* RFC-5988 Relation `Link` Response header Header 
+* `Invoke-RestMethod -FollowRelLink`
+* Follows to "next" links
+* `Invoke-RestMethod -MaximumFollowRelLink <count>`
+* `Invoke-WebRequest` Returns `RelationLink` property
+* [#3828](https://github.com/PowerShell/PowerShell/pull/3828) & [#5265](https://github.com/PowerShell/PowerShell/pull/5265)
+
+---
+
+@title[Link Header Pagination (cont.)]
+
+```powershell
+$baseurl = 'https://httpbin.org/response-headers?Link='
+$relLink = '<https://httpbin.org/response-headers?link=done>; rel="next"'
+$relLink = [uri]::EscapeDataString($relLink)
+$url = '{0}{1}' -f $baseurl, $relLink
+```
+
+---
+
+@title[Link Header Pagination (cont.)]
+
+```powershell
+$Res = Invoke-WebRequest $url
+$Res.RelationLink
+```
+```none
+Key  Value
+---  -----
+next https://httpbin.org/response-headers?link=done
+```
+
+---
+
+@title[Link Header Pagination (cont.)]
+
+```powershell
+Invoke-RestMethod $url -FollowRelLink -verbose
+```
+```none
+VERBOSE: GET https://httpbin.org/response-headers?Link=
+ <https:%2F%2Fhttpbin.org%2Fresponse-headers%3Flink%3Ddone>%3B rel%3D"next" 
+ with 0-byte payload
+VERBOSE: received 118-byte response of content type application/json
+VERBOSE: Content encoding: iso-8859-1
+VERBOSE: Following rel link https://httpbin.org/response-headers?link=done
+VERBOSE: GET https://httpbin.org/response-headers?link=done with 0-byte payload
+VERBOSE: received 60-byte response of content type application/json
+VERBOSE: Content encoding: iso-8859-1
+Content-Type     Link
+------------     ----
+application/json <https://httpbin.org/response-headers?link=done>; rel="next"
+application/json done
+```
+
+---
+
+### Thanks!
+
+![Rin Avatar](img/rin.jpg)
+[@markekraus on Twitter](https://twitter.com/markekraus)
+[markekraus on GitHub](https://github.com/markekraus)
+[/u/markekraus](https://www.reddit.com/user/markekraus/)
+[@markekraus on Poshcode Slack](http://slack.poshcode.org/)
+[http://get-powershellblog.blogspot.com/](http://get-powershellblog.blogspot.com/)
