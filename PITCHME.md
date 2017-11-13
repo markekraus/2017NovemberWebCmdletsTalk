@@ -645,6 +645,19 @@ application/json done
 
 ---
 
+@title[Multipart/form-data Support]
+
+---
+
+### Future Plans
+
+* Custom Cert Validation
+* Session level settings
+* Better Multipart/form-data support
+
+
+---
+
 ### Thanks!
 
 ![Rin Avatar](img/rin.jpg)
