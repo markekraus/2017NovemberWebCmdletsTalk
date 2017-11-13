@@ -178,21 +178,8 @@ Windows PowerShell 5.1:
 
 ---
 
-@title[No ServicePointManager Support]
-### No ServicePointManager Support
-
-None of these have any affect:
-```powershell
-[Net.ServicePointManager]::SecurityProtocol
-[Net.ServicePointManager]::ServerCertificateValidationCallback
-[Net.ServicePointManager]::MaxServicePoints
-[Net.ServicePointManager]::MaxServicePointIdleTime
-```
-
----
-
 @title[Missing Features and Issue]
-## Missing Features and Issue
+## Missing Features and Issues
 
 ---
 
@@ -250,10 +237,10 @@ true
 
 @title[macOS SSL/TLS/Certificate Partial Feature Support]
 ### macOS SSL/TLS/Certificate Partial Feature Support
-* CoreFX wraps `curl`
-* macOS `curl` not all using OpenSSL
+* CoreFX wraps `libcurl`
+* macOS `libcurl` not all using OpenSSL
 * Flaky support for various new security and encryption features
-* May see the same on *nix distros with Non-OpenSSL `curl`
+* May see the same on *nix distros with Non-OpenSSL `libcurl`
 
 ---
 
@@ -263,6 +250,19 @@ true
 * SSL 3.0 Deprecated
 * TLS 1.0, 1.1, 1.2 supported
 * No TLS 1.3/2.0 on any platforms yet
+
+---
+
+@title[No ServicePointManager Support]
+### No ServicePointManager Support
+
+None of these have any affect:
+```powershell
+[Net.ServicePointManager]::SecurityProtocol
+[Net.ServicePointManager]::ServerCertificateValidationCallback
+[Net.ServicePointManager]::MaxServicePoints
+[Net.ServicePointManager]::MaxServicePointIdleTime
+```
 
 ---
 
@@ -283,9 +283,9 @@ true
 
 ---
 
-@title[New Parameters in Both]
+@title[New Parameters in Both Cmdlets]
 
-### New Parameters in Both
+### New Parameters in Both Cmdlets
 
 * AllowUnencryptedAuthentication 
 * Authentication
@@ -295,9 +295,9 @@ true
 
 ---
 
-@title[New Parameters in Both (cont.)]
+@title[New Parameters in Both Cmdlets (cont.)]
 
-### New Parameters in Both (cont.)
+### New Parameters in Both Cmdlets (cont.)
 
 * SkipCertificateCheck
 * SkipHeaderValidation
@@ -346,7 +346,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
   PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64;
  ) PowerShell/6.0.0
 ```
-[#4914](https://github.com/PowerShell/PowerShell/pull/4914), [#4937](https://github.com/PowerShell/PowerShell/pull/4937), [#5256](https://github.com/PowerShell/PowerShell/pull/5256)
+[#4914](https://github.com/PowerShell/PowerShell/pull/4914), [#4937](https://github.com/PowerShell/PowerShell/pull/4937), & [#5256](https://github.com/PowerShell/PowerShell/pull/5256)
 
 ---
 
@@ -492,7 +492,7 @@ Content-Type                     {application/json}
 ---
 
 @title[-SslProtocol Parameter]
-### -SslProtocol Parameter
+### -SslProtocol Parameter *
 
 * Supports
   * Default (TLS 1.0, TLS 1.1, and TLS 2.0 )
@@ -600,6 +600,9 @@ Invoke-RestMethod -uri $uri -SkipCertificateCheck
 
 @title[Link Header Pagination (cont.)]
 
+### Link Header Pagination (cont.)
+
+Build the URL:
 ```powershell
 $baseurl = 'https://httpbin.org/response-headers?Link='
 $relLink = '<https://httpbin.org/response-headers?link=done>; rel="next"'
@@ -611,6 +614,9 @@ $url = '{0}{1}' -f $baseurl, $relLink
 
 @title[Link Header Pagination (cont.)]
 
+### Link Header Pagination (cont.)
+
+`Invoke-WebRequest` Example:
 ```powershell
 $Res = Invoke-WebRequest $url
 $Res.RelationLink
@@ -625,6 +631,9 @@ next https://httpbin.org/response-headers?link=done
 
 @title[Link Header Pagination (cont.)]
 
+### Link Header Pagination (cont.)
+
+Invoke-RestMethod example:
 ```powershell
 Invoke-RestMethod $url -FollowRelLink -verbose
 ```
