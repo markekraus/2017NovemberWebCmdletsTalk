@@ -308,7 +308,7 @@ None of these have any affect:
 @title[New Parameters in Invoke-RestMethod]
 
 ### New Parameters in 
-### Invoke-WebRequest
+### Invoke-RestMethod
 
 * FollowRelLink
 * MaximumFollowRelLink
@@ -390,7 +390,7 @@ Invoke-RestMethod -Auth Basic -Cred $Credential -Uri $uri
 ```powershell
 $Token = Read-Host -AsSecureString -Prompt "Token"
 $uri = 'https://httpbin.org/headers'
-Invoke-RestMethod -Auth Basic -Token $Token -Uri $uri
+Invoke-RestMethod -Auth OAuth -Token $Token -Uri $uri
 ```
 
 ---
