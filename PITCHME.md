@@ -353,7 +353,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 @title[Authentication]
 
 ### Authentication
-* `-Authentication` or `-Auth` Added with support for:
+* `-Authentication` or `-Auth`
   * Basic
   * Bearer / OAuth
   * None (default)
@@ -370,6 +370,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 * Uses `-Auth Basic`
 * Requires `-Credential` 
 * Requires a `PSCredential`
+* `-UseDefaultCredentials` not supported
 
 ```powershell
 $Credential = Get-Credential
@@ -646,6 +647,31 @@ application/json done
 ---
 
 @title[Multipart/form-data Support]
+
+### Multipart/form-data Support
+* `-Body`
+* `System.Net.Http.MultipartFormDataContent`
+* [#4782](https://github.com/PowerShell/PowerShell/pull/4782)
+* [https://get-powershellblog.blogspot.com/2017/09/multipartform-data-support-for-invoke.html](https://get-powershellblog.blogspot.com/2017/09/multipartform-data-support-for-invoke.html)
+
+---
+
+@title[Multipart/form-data Support (cont.)]
+```powershell
+$multipartContent = 
+  [System.Net.Http.MultipartFormDataContent]::new()
+$stringHeader = 
+  [System.Net.Http.Headers.ContentDispositionHeaderValue]::new(
+      "form-data")
+$stringHeader.Name = "TestString"
+$StringContent = 
+  [System.Net.Http.StringContent]::new(
+      "TestValue")
+$StringContent.Headers.ContentDisposition = $stringHeader
+$multipartContent.Add($stringContent)
+$uri = 'https://httpbin.org/post'
+Invoke-WebRequest -Uri $uri -Body $multipartContent -Method 'POST'
+```
 
 ---
 
