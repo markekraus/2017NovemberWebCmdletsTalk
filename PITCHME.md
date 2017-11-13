@@ -706,6 +706,7 @@ TestValue
 ![Rin Avatar](img/rin.jpg)
 * [@markekraus on Twitter](https://twitter.com/markekraus)
 * [markekraus on GitHub](https://github.com/markekraus)
-* [/u/markekraus](https://www.reddit.com/user/markekraus/)
+* [/u/markekraus on reddit](https://www.reddit.com/user/markekraus/)
 * [@markekraus on Poshcode Slack](http://slack.poshcode.org/)
 * [http://get-powershellblog.blogspot.com/](http://get-powershellblog.blogspot.com/)
+* [https://github.com/markekraus/2017NovemberWebCmdletsTalk](https://github.com/markekraus/2017NovemberWebCmdletsTalk)
