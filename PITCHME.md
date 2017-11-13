@@ -666,6 +666,9 @@ application/json done
 ---
 
 @title[Multipart/form-data Support (cont.)]
+
+### Multipart/form-data Support
+
 ```powershell
 $multipartContent = 
   [System.Net.Http.MultipartFormDataContent]::new()
@@ -674,12 +677,17 @@ $stringHeader =
       "form-data")
 $stringHeader.Name = "TestString"
 $StringContent = 
-  [System.Net.Http.StringContent]::new(
-      "TestValue")
+  [System.Net.Http.StringContent]::new("TestValue")
 $StringContent.Headers.ContentDisposition = $stringHeader
 $multipartContent.Add($stringContent)
 $uri = 'https://httpbin.org/post'
-Invoke-WebRequest -Uri $uri -Body $multipartContent -Method 'POST'
+Invoke-RestMethod $uri -Body $multipartContent -Method 'POST' |
+    Select-Object -ExpandProperty Form
+```
+```none
+TestString
+----------
+TestValue
 ```
 
 ---
