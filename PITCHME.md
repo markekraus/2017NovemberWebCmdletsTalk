@@ -3,7 +3,7 @@
 #### November 2017 
 #### @ North Texas PC Users Group (NTPCUG) PowerShell SIG
 
-PowerShell Core 6.0.0-Beta.9
+PowerShell Core 6.0.0
 
 ---
 
@@ -126,7 +126,7 @@ System.Net.HttpWebResponse
 System.Net.WebHeaderCollection
 True
 ```
-#### PowerShell Core 6.0.0-Beta.9
+#### PowerShell Core 6.0.0
 ```none
 System.String[]
 System.Net.Http.HttpResponseMessage
@@ -148,7 +148,7 @@ Windows PowerShell 5.1:
 ```none
 -1
 ```
-PowerShell Core 6.0.0-Beta.9:
+PowerShell Core 6.0.0:
 ```none
 Cannot convert the "System.String[]" value of type 
 "System.String[]" to type "System.Int32".
@@ -301,7 +301,7 @@ None of these have any affect:
 
 * SkipCertificateCheck
 * SkipHeaderValidation
-* SslProtocol *
+* SslProtocol
 * Token
 ---
 
@@ -325,7 +325,7 @@ Windows PowerShell 5.1:
 Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) 
  WindowsPowerShell/5.1.15063.674
 ```
-6.0.0-beta.9 Windows:
+6.0.0 Windows:
 ```none
 Mozilla/5.0 (Windows NT 10.0; Microsoft Windows
  10.0.15063; en-US) PowerShell/6.0.0
@@ -333,13 +333,13 @@ Mozilla/5.0 (Windows NT 10.0; Microsoft Windows
 
 ---
 
-6.0.0-beta.9 Linux:
+6.0.0 Linux:
 ```none
 Mozilla/5.0 (Linux; Linux 4.4.0-96-generic 
  #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017;
   en-US) PowerShell/6.0.0
 ```
-6.0.0-beta.9 macOS:
+6.0.0 macOS:
 ```none
 Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
  Kernel Version 17.0.0: Thu Aug 24 21:48:19
@@ -416,6 +416,7 @@ AllowUnencryptedAuthentication parameter.
 ### Bypass Auth Errors with -AllowUnencryptedAuthentication
 * !!! USE HTTPS !!!
 * But when you can't, use `-AllowUnencryptedAuthentication`
+* [#5052](https://github.com/PowerShell/PowerShell/pull/5052) & [#5402](https://github.com/PowerShell/PowerShell/pull/5402)
 
 ```powershell
 $Params = @{
@@ -492,7 +493,7 @@ Content-Type                     {application/json}
 ---
 
 @title[-SslProtocol Parameter]
-### -SslProtocol Parameter *
+### -SslProtocol Parameter
 
 * Supports
   * Default (TLS 1.0, TLS 1.1, and TLS 2.0 )
@@ -505,7 +506,7 @@ Content-Type                     {application/json}
 ---
 
 @title[-SslProtocol Parameter (cont.)]
-### -SslProtocol Parameter *
+### -SslProtocol Parameter
 
 ```powershell
 $uri = 'https://google.com'
@@ -688,6 +689,39 @@ Invoke-RestMethod $uri -Body $multipartContent -Method 'POST' |
 TestString
 ----------
 TestValue
+```
+
+---
+
+@title[Invoke-RestMethod Null JSON Literal Handling]
+
+### Invoke-RestMethod Null JSON Literal Handling
+* Invoke-RestMethod now supports single value `null` JSON Literal
+* Was previously returning string `'null'`
+* [#5338](https://github.com/PowerShell/PowerShell/pull/5338)
+
+
+---
+
+@title[Invoke-RestMethod Null JSON Literal Handling (cont.)]
+### Invoke-RestMethod Null JSON Literal Handling (cont.)
+
+```powershell
+$uri = 'http://urlecho.appspot.com/echo'
+$uri += '?status=200&Content-Type=application%2Fjson&body=null'
+$result = Invoke-RestMethod -uri $uri
+$null -eq $result
+'null' -eq $result
+```
+Windows PowerShell 5.1
+```none
+False
+True
+```
+PowerShell Core 6.0.0
+```none
+True
+False
 ```
 
 ---
