@@ -1,5 +1,6 @@
 @title[Introduction]
-## PowerShell Core Web Cmdlets In Depth
+## PowerShell Core 
+## Web Cmdlets In Depth
 #### November 2017 
 #### @ North Texas PC Users Group (NTPCUG) PowerShell SIG
 
@@ -517,7 +518,7 @@ Content-Type                     {application/json}
 ### -SslProtocol Parameter
 
 * Supports
-  * Default (TLS 1.0, TLS 1.1, and TLS 2.0 )
+  * Default (TLS 1.0, TLS 1.1, and TLS 1.2)
   * Tls - TLS 1.0
   * Tls11 - TLS 1.1
   * Tls12 - TLS 1.2
@@ -750,7 +751,7 @@ False
 ### Future Plans
 
 * Custom Cert Validation
-* Session level settings
+* Session/Process level settings
 * Better Multipart/form-data support
 
 
