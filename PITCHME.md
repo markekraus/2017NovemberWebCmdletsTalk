@@ -3,7 +3,7 @@
 #### November 2017 
 #### @ North Texas PC Users Group (NTPCUG) PowerShell SIG
 
-PowerShell Core 6.0.0
+PowerShell Core 6.0.0-rc
 
 ---
 
@@ -75,7 +75,7 @@ $Params = @{
 Invoke-RestMethod @Params
 ```
 ```none
-Invoke-WebRequest : The format of value '12345' is invalid.
+Invoke-RestMethod : The format of value '12345' is invalid.
 ```
 ```powershell
 $Params = @{
@@ -111,6 +111,27 @@ $PSDefaultParameterValues[$command] = $true
 ---
 
 @title[Move from HttpWebResponse to HttpResponseMessage (cont.)]
+
+### Move from HttpWebResponse to HttpResponseMessage (cont.)
+* Error handling changed
+* `Exception.Response`
+
+```powershell
+Invoke-RestMethod -Uri https://httpbin.org/status/404
+$Error[0].Exception.Response.GetType().fullname
+```
+Windows PowerShell 5.1
+```none
+System.Net.HttpWebResponse
+```
+PowerShell Core 6.0.0
+```none
+System.Net.Http.HttpResponseMessage
+```
+
+---
+
+@title[Move from HttpWebResponse to HttpResponseMessage (cont.)]
 ```powershell
 $url = 'https://www.google.com'
 $Result = Invoke-WebRequest $url
@@ -119,14 +140,14 @@ $Result.BaseResponse.GetType().FullName
 $Result.BaseResponse.Headers.GetType().FullName
 $null -eq $Result.BaseResponse.Content.Headers
 ```
-#### Windows PowerShell 5.1
+Windows PowerShell 5.1
 ```none
 System.String
 System.Net.HttpWebResponse
 System.Net.WebHeaderCollection
 True
 ```
-#### PowerShell Core 6.0.0
+PowerShell Core 6.0.0
 ```none
 System.String[]
 System.Net.Http.HttpResponseMessage
