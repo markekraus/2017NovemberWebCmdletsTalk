@@ -23,21 +23,21 @@ PowerShell Core 6.0.0-rc
 
 ### Topics
 
-* Move from `HttpWebRequest` to `HttpClient`
+* Move from `WebRequest` to `HttpClient`
 * Deprecated/Missing Features and Issues
 * New Features and Fixes
 
 ---
 
-@title[Move HttpWebRequest to HttpClient]
+@title[Move WebRequest to HttpClient]
 
-## Move from `HttpWebRequest` to `HttpClient`
+## Move from `WebRequest` to `HttpClient`
 
 ---
 
-@title[HttpWebRequest Vs HttpClient: HttpWebRequest]
+@title[WebRequest Vs HttpClient: WebRequest]
 
-### `HttpWebRequest`
+### `WebRequest`
 
 * Older API
 * Slightly less performant
@@ -45,7 +45,7 @@ PowerShell Core 6.0.0-rc
 
 ---
 
-@title[HttpWebRequest Vs HttpClient: HttpClient]
+@title[WebRequest Vs HttpClient: HttpClient]
 
 ### `HttpClient`
 
