@@ -42,6 +42,7 @@ PowerShell Core 6.0.0-rc
 * Older API
 * Slightly less performant
 * Less attractive async
+* Multiple protocols supported
 
 ---
 
@@ -52,6 +53,7 @@ PowerShell Core 6.0.0-rc
 * More like a Headless Web Browser
 * Better fit for Web Cmdlets
 * More attractive async
+* HTTP and HTTPS only
 * Allows better optimizations
   * Reuse
   * Session level settings
