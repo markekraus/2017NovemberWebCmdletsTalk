@@ -205,6 +205,17 @@ Windows PowerShell 5.1:
 
 ---
 
+@title[No FTP: or FILE: Support]
+
+### No FTP: or FILE: Support
+
+* `HttpClient` supports only `HTTP:` and `HTTPS:`
+* No `FTP:` or `FILE:`
+* Possibly separate cmdlet in the future
+* Issue [#5491](https://github.com/PowerShell/PowerShell/issues/5491)
+
+---
+
 @title[Basic Parsing Only]
 ### Basic Parsing Only
 
@@ -753,7 +764,8 @@ False
 * Custom Cert Validation
 * Session/Process level settings
 * Better Multipart/form-data support
-
+* FTP Support
+* Stream Support
 
 ---
 
