@@ -23,9 +23,22 @@ PowerShell Core 6.0.0-rc
 
 ### Topics
 
+* PowerShell Core v6.0.0-rc Released
 * Move from `WebRequest` to `HttpClient`
 * Deprecated/Missing Features and Issues
 * New Features and Fixes
+
+---
+
+@title[PowerShell Core v6.0.0-rc Released]
+
+### PowerShell Core v6.0.0-rc Released
+
+* RC Released 6:20pm CST 11/17
+* Go forth and [install](https://github.com/PowerShell/PowerShell/releases/tag/v6.0.0-rc)!
+* Test all the things!!
+* Open new [issues](https://github.com/PowerShell/PowerShell/issues)
+* GA Release Target: January 10, 2018
 
 ---
 
