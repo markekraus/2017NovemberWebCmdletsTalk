@@ -793,3 +793,7 @@ False
 * [@markekraus on Poshcode Slack](http://slack.poshcode.org/)
 * [http://get-powershellblog.blogspot.com/](http://get-powershellblog.blogspot.com/)
 * [https://github.com/markekraus/2017NovemberWebCmdletsTalk](https://github.com/markekraus/2017NovemberWebCmdletsTalk)
+
+---
+
+## Q & A
