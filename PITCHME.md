@@ -684,8 +684,8 @@ $Params = @{
     Uri = 'https://httpbin.org/redirect-to?url=/get'
     Headers = @{Authorization = 'Test'}
 }
-$res = Invoke-RestMethod @Params -PreserveAuthorizationOnRedirect
-$res.headers.Authorization
+$r= Invoke-RestMethod @Params -PreserveAuthorizationOnRedirect
+$r.headers.Authorization
 ```
 
 ```none
