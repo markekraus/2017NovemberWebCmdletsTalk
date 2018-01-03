@@ -816,11 +816,10 @@ TestValue
 
 @title[Invoke-RestMethod Null JSON Literal Handling (cont.)]
 
-### Invoke-RestMethod Null JSON Literal Handling (cont.)
-
 ```powershell
-$uri = 'http://urlecho.appspot.com/echo'
-$uri += '?status=200&Content-Type=application%2Fjson&body=null'
+$uri = -join @(
+ 'http://urlecho.appspot.com/echo'
+ '?status=200&Content-Type=application%2Fjson&body=null')
 $result = Invoke-RestMethod -uri $uri
 $null -eq $result
 'null' -eq $result
