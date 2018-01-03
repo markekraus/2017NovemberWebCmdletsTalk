@@ -726,11 +726,16 @@ Invoke-RestMethod -uri $uri -SkipCertificateCheck
 
 ### Link Header Pagination Demo
 
-Get Issues from GitHub
-
 ```powershell
-$uri = 'https://api.github.com/repos/powershell/powershell/issues'
-$res = Invoke-RestMethod -Uri $uri -FollowRelLink -MaximumFollowRelLink 2
+$uri =
+ 'https://api.github.com/repos/powershell/powershell/issues'
+$Params = @{
+    Uri = $uri
+    MaximumFollowRelLink = 2
+}
+$res =
+ Invoke-RestMethod @Params -FollowRelLink
+
 $res[0].Count
 $res[1].Count
 ```
