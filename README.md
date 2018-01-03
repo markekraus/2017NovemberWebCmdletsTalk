@@ -1,5 +1,5 @@
-# November 2017 PowerShell Core Web Cmdlets Presentation @ The North Texas PC Users Group (NTPCUG) PowerShell SIG
+# January 2018 PowerShell Core Web Cmdlets Presentation @ Jacksonville PowerShell User Group
 
 This project contains notes and code snippets from Mark Kraus's presentation on PowerShell Core 6.0.0 Web Cmdlets.
 
-[Presentation](https://gitpitch.com/markekraus/2017NovemberWebCmdletsTalk#/)
+[Presentation](https://gitpitch.com/markekraus/2017NovemberWebCmdletsTalk/January2018)
