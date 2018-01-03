@@ -779,22 +779,21 @@ prev  api.github.com/repositories/49609581/issues?page=1
 
 @title[Multipart/form-data Support (cont.)]
 
-### Multipart/form-data Support (cont.)
-
 ```powershell
-$multipartContent =
-  [System.Net.Http.MultipartFormDataContent]::new()
-$stringHeader =
-  [System.Net.Http.Headers.ContentDispositionHeaderValue]::new(
-      "form-data")
-$stringHeader.Name = "TestString"
-$StringContent =
-  [System.Net.Http.StringContent]::new("TestValue")
-$StringContent.Headers.ContentDisposition = $stringHeader
-$multipartContent.Add($stringContent)
+using namespace System.Net.Http
+using namespace System.Net.Http.Headers
+$sh =
+ [ContentDispositionHeaderValue]::new("form-data")
+$sh.Name = "TestString"
+
+$sc = [StringContent]::new("TestValue")
+$sc.Headers.ContentDisposition = $sh
+
+$m = [MultipartFormDataContent]::new()
+$m.Add($sc)
+
 $uri = 'https://httpbin.org/post'
-Invoke-RestMethod $uri -Body $multipartContent -Method 'POST' |
-    Select-Object -ExpandProperty Form
+(Invoke-RestMethod $uri -Body $m -Method 'POST').Form
 ```
 
 ```none
