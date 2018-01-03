@@ -747,21 +747,22 @@ $res[1].Count
 
 ---
 
-title[Link Header Pagination Demo 2]
+@title[Link Header Pagination Demo 2]
 
 ```powershell
-$uri = 'https://api.github.com/repositories/49609581/issues?page=2'
-$Res = Invoke-WebRequest -Uri $Uri
+$uri =
+ 'https://api.github.com/repositories/49609581/issues?page=2'
+$Res = Invoke-WebRequest -Uri $uri
 $Res.RelationLink
 ```
 
 ```none
 Key   Value
 ---   -----
-next  https://api.github.com/repositories/49609581/issues?page=3
-last  https://api.github.com/repositories/49609581/issues?page=39
-first https://api.github.com/repositories/49609581/issues?page=1
-prev  https://api.github.com/repositories/49609581/issues?page=1
+next  api.github.com/repositories/49609581/issues?page=3
+last  api.github.com/repositories/49609581/issues?page=39
+first api.github.com/repositories/49609581/issues?page=1
+prev  api.github.com/repositories/49609581/issues?page=1
 ```
 
 ---
