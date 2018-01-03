@@ -141,8 +141,6 @@ $PSDefaultParameterValues[$command] = $true
 
 @title[Move from HttpWebResponse to HttpResponseMessage (cont.)]
 
-### Move from HttpWebResponse to HttpResponseMessage (cont.)
-
 * Error handling changed
 * `Exception.Response`
 
@@ -224,7 +222,7 @@ Cannot convert the "System.String[]" value of type
 
 @title[Watchout for Headers (cont.)]
 
-#### For backwards compatibility:
+#### Backwards Compatibility
 
 Comma Join:
 
@@ -265,7 +263,7 @@ Windows PowerShell 5.1:
 
 * `HttpClient` supports only `HTTP:` and `HTTPS:`
 * No `FTP:` or `FILE:`
-* Possibly separate cmdlet in the future
+* Invoked-Download ???
 * Issue [#5491](https://github.com/PowerShell/PowerShell/issues/5491)
 
 ---
@@ -284,7 +282,7 @@ Windows PowerShell 5.1:
 
 @title[Basic Parsing Only (cont.)]
 
-### Basic Parsing Only (cont.)
+### Basic Parsing Only Demo
 
 ```powershell
 $url = 'https://www.google.com'
@@ -471,7 +469,6 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 * Explicit Authentication
 * Possibly more in the future
 * [#5052](https://github.com/PowerShell/PowerShell/pull/5052)
-* [https://get-powershellblog.blogspot.com/2017/10/new-powershell-core-feature-basic-and.html](https://get-powershellblog.blogspot.com/2017/10/new-powershell-core-feature-basic-and.html)
 
 ---
 
@@ -543,9 +540,8 @@ $Params = @{
     Authentication = 'Basic'
     Credential = Get-Credential
     uri = 'http://google.com'
-    AllowUnencryptedAuthentication = $true
 }
-Invoke-RestMethod @Params
+Invoke-RestMethod @Params -AllowUnencryptedAuthentication
 ```
 
 ---
@@ -619,7 +615,7 @@ Content-Type                     {application/json}
 
 @title[-SslProtocol Parameter]
 
-### -SslProtocol Parameter
+### -SslProtocol
 
 * Supports
   * Default (TLS 1.0, TLS 1.1, and TLS 1.2)
@@ -633,8 +629,6 @@ Content-Type                     {application/json}
 
 @title[-SslProtocol Parameter (cont.)]
 
-### -SslProtocol Parameter (cont.)
-
 ```powershell
 $uri = 'https://google.com'
 Invoke-WebRequest -uri $uri -SslProtocol 'Ts12'
@@ -645,7 +639,7 @@ Invoke-WebRequest -uri $uri -SslProtocol 'Ts12, Tls11'
 
 @title[-CustomMethod Parameter]
 
-### -CustomMethod Parameter
+### -CustomMethod
 
 * For custom request methods not supported by `-Method`
 * [#3142](https://github.com/PowerShell/PowerShell/pull/3142)
@@ -666,7 +660,7 @@ PURIFY
 
 @title[-NoProxy Parameter]
 
-### -NoProxy Parameter
+### -NoProxy
 
 * Bypass a default proxy if one is set on the system
 * [#3447](https://github.com/PowerShell/PowerShell/pull/3447)
@@ -680,7 +674,7 @@ Invoke-RestMethod -uri $uri -NoProxy
 
 @title[-PreserveAuthorizationOnRedirect Parameter]
 
-### -PreserveAuthorizationOnRedirect Parameter
+### -PreserveAuthorizationOnRedirect
 
 * Allows `Authorization` header to be sent when request is redirected.
 * [#3885](https://github.com/PowerShell/PowerShell/pull/3885)
@@ -689,9 +683,8 @@ Invoke-RestMethod -uri $uri -NoProxy
 $Params = @{
     Uri = 'https://httpbin.org/redirect-to?url=/get'
     Headers = @{Authorization = 'Test'}
-    PreserveAuthorizationOnRedirect = $true
 }
-$res = Invoke-RestMethod @Params
+$res = Invoke-RestMethod @Params -PreserveAuthorizationOnRedirect
 $res.headers.Authorization
 ```
 
@@ -729,64 +722,41 @@ Invoke-RestMethod -uri $uri -SkipCertificateCheck
 
 ---
 
-@title[Link Header Pagination (cont.)]
+@title[Link Header Pagination Demo]
 
-### Link Header Pagination (cont.)
+### Link Header Pagination Demo
 
-Build the URL:
+Get Issues from GitHub
 
 ```powershell
-$baseurl = 'https://httpbin.org/response-headers?Link='
-$relLink = '<https://httpbin.org/response-headers?link=done>; rel="next"'
-$relLink = [uri]::EscapeDataString($relLink)
-$url = '{0}{1}' -f $baseurl, $relLink
+$uri = 'https://api.github.com/repos/powershell/powershell/issues'
+$res = Invoke-RestMethod -Uri $uri -FollowRelLink -MaximumFollowRelLink 2
+$res[0].Count
+$res[1].Count
+```
+
+```none
+30
+30
 ```
 
 ---
 
-@title[Link Header Pagination (cont.)]
-
-### Link Header Pagination (cont.)
-
-`Invoke-WebRequest` Example:
+title[Link Header Pagination Demo 2]
 
 ```powershell
-$Res = Invoke-WebRequest $url
+$uri = 'https://api.github.com/repositories/49609581/issues?page=2'
+$Res = Invoke-WebRequest -Uri $Uri
 $Res.RelationLink
 ```
 
 ```none
-Key  Value
----  -----
-next https://httpbin.org/response-headers?link=done
-```
-
----
-
-@title[Link Header Pagination (cont.)]
-
-### Link Header Pagination (cont.)
-
-Invoke-RestMethod example:
-
-```powershell
-Invoke-RestMethod $url -FollowRelLink -verbose
-```
-
-```none
-VERBOSE: GET https://httpbin.org/response-headers?Link=
- <https:%2F%2Fhttpbin.org%2Fresponse-headers%3Flink%3Ddone>%3B rel%3D"next"
- with 0-byte payload
-VERBOSE: received 118-byte response of content type application/json
-VERBOSE: Content encoding: iso-8859-1
-VERBOSE: Following rel link https://httpbin.org/response-headers?link=done
-VERBOSE: GET https://httpbin.org/response-headers?link=done with 0-byte payload
-VERBOSE: received 60-byte response of content type application/json
-VERBOSE: Content encoding: iso-8859-1
-Content-Type     Link
-------------     ----
-application/json <https://httpbin.org/response-headers?link=done>; rel="next"
-application/json done
+Key   Value
+---   -----
+next  https://api.github.com/repositories/49609581/issues?page=3
+last  https://api.github.com/repositories/49609581/issues?page=39
+first https://api.github.com/repositories/49609581/issues?page=1
+prev  https://api.github.com/repositories/49609581/issues?page=1
 ```
 
 ---
@@ -798,7 +768,6 @@ application/json done
 * `-Body`
 * `System.Net.Http.MultipartFormDataContent`
 * [#4782](https://github.com/PowerShell/PowerShell/pull/4782)
-* [https://get-powershellblog.blogspot.com/2017/09/multipartform-data-support-for-invoke.html](https://get-powershellblog.blogspot.com/2017/09/multipartform-data-support-for-invoke.html)
 
 ---
 
