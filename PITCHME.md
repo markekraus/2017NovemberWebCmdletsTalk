@@ -141,12 +141,12 @@ Move from <span class="dotnetType">HttpWebResponse</span> to <span class="dotnet
 
 ---
 
-* `BasicHtmlWebResponseObject.Headers` changed from
+* <span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>Headers</span> changed from
   <span class="dotnetType">String</span> to
   <span class="dotnetType">String</span><span class="dotnetGrey">[]</span>
 * Content related Response Headers separated
-  `BasicHtmlWebResponseObject.Headers`
-  `BasicHtmlWebResponseObject.Content.Headers`
+  <span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>Headers</span>
+  <span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>Content<span class="dotnetGrey">.</span>Headers</span>
 
 ---
 
