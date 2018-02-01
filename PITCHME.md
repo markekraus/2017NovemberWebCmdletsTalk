@@ -8,7 +8,7 @@ January 2018
 
 @ Jacksonville PowerShell User Group
 
-PowerShell Core 6.0.0-rc.2
+PowerShell Core 6.0.1
 
 ---
 
@@ -31,19 +31,19 @@ PowerShell Core 6.0.0-rc.2
 
 ### Topics
 
-* PowerShell Core v6.0.0-rc.2 Released
+* PowerShell Core v6.0.1 Released
 * Move from `WebRequest` to `HttpClient`
 * Deprecated/Missing Features and Issues
 * New Features and Fixes
 
 ---
 
-@title[PowerShell Core v6.0.0-rc.2 Released]
+@title[PowerShell Core v6.0.1 Released]
 
-### PowerShell Core v6.0.0-rc.2 Released
+### PowerShell Core v6.0.1 Released
 
 * RC Released 12/14
-* Go forth and [install](https://github.com/PowerShell/PowerShell/releases/tag/v6.0.0-rc.2)!!
+* Go forth and [install](https://github.com/PowerShell/PowerShell/releases/tag/v6.0.1)!!
 * Test all the things!!
 * Open new [issues](https://github.com/PowerShell/PowerShell/issues)
 * GA Release Target: January 10, 2018
@@ -155,7 +155,7 @@ Windows PowerShell 5.1
 System.Net.HttpWebResponse
 ```
 
-PowerShell Core 6.0.0
+PowerShell Core 6.0.1
 
 ```none
 System.Net.Http.HttpResponseMessage
@@ -183,7 +183,7 @@ System.Net.WebHeaderCollection
 True
 ```
 
-PowerShell Core 6.0.0:
+PowerShell Core 6.0.1:
 
 ```none
 System.String[]
@@ -211,7 +211,7 @@ Windows PowerShell 5.1:
 -1
 ```
 
-PowerShell Core 6.0.0:
+PowerShell Core 6.0.1:
 
 ```none
 Cannot convert the "System.String[]" value of type
@@ -428,30 +428,30 @@ Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US)
  WindowsPowerShell/5.1.15063.674
 ```
 
-6.0.0 Windows:
+6.0.1 Windows:
 
 ```none
 Mozilla/5.0 (Windows NT 10.0; Microsoft Windows
- 10.0.15063; en-US) PowerShell/6.0.0
+ 10.0.15063; en-US) PowerShell/6.0.1
 ```
 
 ---
 
-6.0.0 Linux:
+6.0.1 Linux:
 
 ```none
 Mozilla/5.0 (Linux; Linux 4.4.0-96-generic
  #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017;
-  en-US) PowerShell/6.0.0
+  en-US) PowerShell/6.0.1
 ```
 
-6.0.0 macOS:
+6.0.1 macOS:
 
 ```none
 Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
  Kernel Version 17.0.0: Thu Aug 24 21:48:19
   PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64;
- ) PowerShell/6.0.0
+ ) PowerShell/6.0.1
 ```
 
 [#4914](https://github.com/PowerShell/PowerShell/pull/4914), [#4937](https://github.com/PowerShell/PowerShell/pull/4937), & [#5256](https://github.com/PowerShell/PowerShell/pull/5256)
@@ -832,7 +832,7 @@ False
 True
 ```
 
-PowerShell Core 6.0.0
+PowerShell Core 6.0.1
 
 ```none
 True
