@@ -31,16 +31,16 @@ PowerShell Core 6.0.1
 
 ### Topics
 
-* PowerShell Core v6.0.1
+* PowerShell Core 6.0.1
 * Move from `WebRequest` to `HttpClient`
 * Deprecated/Missing Features and Issues
 * New Features and Fixes
 
 ---
 
-@title[PowerShell Core v6.0.1 Released]
+@title[PowerShell Core 6.0.1 Released]
 
-### PowerShell Core v6.0.1 Released
+### PowerShell Core 6.0.1 Released
 
 * 6.0.0 Released 1/10
 * 6.0.1 Released 1/25
