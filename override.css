@@ -4,3 +4,17 @@
     font-weight: bold;
     text-transform: none;
 }
+
+.deotnetGrey {
+    color: #d4d4d4;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: none;
+}
+
+.psType {
+    color: #9cdcfe;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: none;
+}

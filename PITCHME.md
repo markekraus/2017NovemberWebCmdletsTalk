@@ -58,7 +58,7 @@ PowerShell Core 6.0.1
 
 @title[WebRequest Vs HttpClient: WebRequest]
 
-### `WebRequest`
+### <span class="dotnetType">WebRequest</span>
 
 * Was not available in .NET Core 1.0
 * Older API
@@ -70,13 +70,13 @@ PowerShell Core 6.0.1
 
 @title[WebRequest Vs HttpClient: HttpClient]
 
-### `HttpClient`
+### <span class="dotnetType">HttpClient</span>
 
 * More like a Headless Web Browser
 * Better fit for Web Cmdlets
 * More attractive async
 * HTTP and HTTPS only
-* `WebRequest` is a thin wrapper
+* <span class="dotnetType">WebRequest</span> is a thin wrapper
 
 ---
 
@@ -130,20 +130,20 @@ $PSDefaultParameterValues[$command] = $true
 
 @title[Move from HttpWebResponse to HttpResponseMessage]
 
-Move from `HttpWebResponse` to `HttpResponseMessage`
+Move from <span class="dotnetType">HttpWebResponse</span> to <span class="dotnetType">HttpResponseMessage</span>
 
-* `BasicHtmlWebResponseObject.BaseResponse` changed from
-  `HttpWebResponse` to
-  `HttpResponseMessage`
+* <span class="psType">BasicHtmlWebResponseObject<span class="dotneGrey">.</span><span class="psType">BaseResponse</span> changed from
+  <span class="dotnetType">HttpWebResponse</span> to
+  <span class="dotnetType">HttpResponseMessage</span>
 * Response Headers changed from
-  `WebHeaderCollection` to
-  `HttpHeaders`
+  <span class="dotnetType">WebHeaderCollection</span> to
+  <span class="dotnetType">HttpHeaders</span>
 
 ---
 
 * `BasicHtmlWebResponseObject.Headers` changed from
-  `String` to
-  `String[]`
+  <span class="dotnetType">String</span> to
+  <span class="dotnetType">String</span><span class="dotnetGrey">[]</span>
 * Content related Response Headers separated
   `BasicHtmlWebResponseObject.Headers`
   `BasicHtmlWebResponseObject.Content.Headers`
