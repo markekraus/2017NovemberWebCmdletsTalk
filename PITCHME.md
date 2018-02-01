@@ -130,12 +130,23 @@ $PSDefaultParameterValues[$command] = $true
 
 @title[Move from HttpWebResponse to HttpResponseMessage]
 
-### Move from HttpWebResponse to HttpResponseMessage
+Move from `HttpWebResponse` to `HttpResponseMessage`
 
-* `BasicHtmlWebResponseObject.BaseResponse` changed from `HttpWebResponse` to `HttpResponseMessage`
-* Response Headers changed from `WebHeaderCollection` to `HttpHeaders`
-* `BasicHtmlWebResponseObject.Headers` values are now `String[]` instead of `String`
+* `BasicHtmlWebResponseObject.BaseResponse` changed from
+  `HttpWebResponse` to
+  `HttpResponseMessage`
+* Response Headers changed from
+  `WebHeaderCollection` to
+  `HttpHeaders`
+
+---
+
+* `BasicHtmlWebResponseObject.Headers` changed from
+  `String` to
+  `String[]`
 * Content related Response Headers separated
+  `BasicHtmlWebResponseObject.Headers`
+  `BasicHtmlWebResponseObject.Content.Headers`
 
 ---
 
