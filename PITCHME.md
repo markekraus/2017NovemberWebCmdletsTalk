@@ -132,7 +132,7 @@ $PSDefaultParameterValues[$command] = $true
 
 Move from <span class="dotnetType">HttpWebResponse</span> to <span class="dotnetType">HttpResponseMessage</span>
 
-* <span class="psType">BasicHtmlWebResponseObject<span class="dotneGrey">.</span><span class="psType">BaseResponse</span> changed from
+* <span class="psType">BasicHtmlWebResponseObject<span class="dotneGrey">.</span>BaseResponse</span> changed from
   <span class="dotnetType">HttpWebResponse</span> to
   <span class="dotnetType">HttpResponseMessage</span>
 * Response Headers changed from
