@@ -4,9 +4,9 @@
 
 ## Web Cmdlets In Depth
 
-January 2018
+February 2018
 
-@ Jacksonville PowerShell User Group
+@ SoCal PowerShell User Group
 
 PowerShell Core 6.0.1
 
@@ -31,7 +31,7 @@ PowerShell Core 6.0.1
 
 ### Topics
 
-* PowerShell Core v6.0.1 Released
+* PowerShell Core v6.0.1
 * Move from `WebRequest` to `HttpClient`
 * Deprecated/Missing Features and Issues
 * New Features and Fixes
@@ -42,11 +42,11 @@ PowerShell Core 6.0.1
 
 ### PowerShell Core v6.0.1 Released
 
-* RC Released 12/14
-* Go forth and [install](https://github.com/PowerShell/PowerShell/releases/tag/v6.0.1)!!
-* Test all the things!!
-* Open new [issues](https://github.com/PowerShell/PowerShell/issues)
-* GA Release Target: January 10, 2018
+* 6.0.0 Released 1/10
+* 6.0.1 Released 1/25
+* Addresses linux/macOS package name issues
+* 2.0.5 .NET Core Runtime
+* XML and X509 Security Patches
 
 ---
 
@@ -60,6 +60,7 @@ PowerShell Core 6.0.1
 
 ### `WebRequest`
 
+* Was not available in .NET Core 1.0
 * Older API
 * Slightly less performant
 * Less attractive async
@@ -75,8 +76,7 @@ PowerShell Core 6.0.1
 * Better fit for Web Cmdlets
 * More attractive async
 * HTTP and HTTPS only
-* Allows better optimizations
-  * Reuse
+* `WebRequest` is a thin wrapper
 
 ---
 
@@ -117,7 +117,7 @@ Invoke-RestMethod @Params
 
 @title[Strict Request Headers Parsing (cont.)]
 
-#### For backwards compatibility:
+For backwards compatibility:
 
 ```powershell
 $command = 'Invoke-WebRequest:SkipHeaderValidation'
@@ -196,7 +196,7 @@ False
 
 @title[Watchout for Headers as an array]
 
-#### Watch out for Headers as an array:
+Watch out for Headers as an array:
 
 ```powershell
 $url = 'https://www.google.com'
@@ -263,7 +263,7 @@ Windows PowerShell 5.1:
 
 * `HttpClient` supports only `HTTP:` and `HTTPS:`
 * No `FTP:` or `FILE:`
-* Invoked-Download ???
+* `Invoked-Download` ???
 * Issue [#5491](https://github.com/PowerShell/PowerShell/issues/5491)
 
 ---
@@ -276,7 +276,7 @@ Windows PowerShell 5.1:
 * Would not have been cross-platform
 * The future is `ConvertFrom-Html`
 * [AngleSharp](https://github.com/AngleSharp/AngleSharp) engine
-* Hopefully for 6.1.0
+* Hopefully for 6.2.0
 
 ---
 
@@ -322,7 +322,7 @@ true
 
 ### No `New-WebServiceProxy`
 
-* depended on `System.Web.Services.dll` not available in CoreFX
+* Depended on `System.Web.Services.dll` not available in CoreFX
 * Low priority
 * Up For Grabs!
 
@@ -844,8 +844,9 @@ False
 ### Future Plans
 
 * Custom Cert Validation
+* Download Resume
 * Session/Process level settings
-* Better Multipart/form-data support
+* Better Multipart/form-data support [#5972](https://github.com/PowerShell/PowerShell/pull/5972)
 * FTP Support
 * Stream Support
 
@@ -858,7 +859,7 @@ False
 * [@markekraus on Twitter](https://twitter.com/markekraus)
 * [markekraus on GitHub](https://github.com/markekraus)
 * [/u/markekraus on reddit](https://www.reddit.com/user/markekraus/)
-* [@markekraus on Poshcode Slack](http://slack.poshcode.org/)
+* [@markekraus http://slack.poshcode.org/](http://slack.poshcode.org/)
 * [http://get-powershellblog.blogspot.com/](http://get-powershellblog.blogspot.com/)
 
 ---
@@ -868,7 +869,9 @@ False
 * Detailed Blog Series
   * [https://get-powershellblog.blogspot.com/2017/11/powershell-core-web-cmdlets-in-depth.html](https://get-powershellblog.blogspot.com/2017/11/powershell-core-web-cmdlets-in-depth.html)
 * Slides:
-  * [https://github.com/markekraus/2017NovemberWebCmdletsTalk/tree/2018January](https://github.com/markekraus/2017NovemberWebCmdletsTalk/tree/2018January)
+  * [https://github.com/markekraus/2017NovemberWebCmdletsTalk/tree/2018February](https://github.com/markekraus/2017NovemberWebCmdletsTalk/tree/2018February)
+* 6.1.0 Web Cmdlet Roadmap:
+  * [https://get-powershellblog.blogspot.com/2018/01/powershell-core-61-web-cmdlets-roadmap.html](https://get-powershellblog.blogspot.com/2018/01/powershell-core-61-web-cmdlets-roadmap.html)
 
 ---
 
