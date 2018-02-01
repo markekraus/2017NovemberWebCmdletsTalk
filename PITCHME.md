@@ -32,7 +32,7 @@ PowerShell Core 6.0.1
 ### Topics
 
 * PowerShell Core 6.0.1
-* Move from <span class="dotnetType">WebRequest</span> to `HttpClient`
+* Move from <span class="dotnetType">WebRequest</span> to <span class="dotnetType">HttpClient<span>
 * Deprecated/Missing Features and Issues
 * New Features and Fixes
 
@@ -52,7 +52,7 @@ PowerShell Core 6.0.1
 
 @title[Move WebRequest to HttpClient]
 
-## Move from `WebRequest` to `HttpClient`
+## Move from <span class="dotnetType">WebRequest</span> to <span class="dotnetType">HttpClient</span>
 
 ---
 
