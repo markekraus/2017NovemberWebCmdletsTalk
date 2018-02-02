@@ -709,7 +709,7 @@ Test
 
 @title[-SkipCertificateCheck Parameter]
 
-### -SkipCertificateCheck Parameter
+### <span class="dotnetGrey">-SkipCertificateCheck</span>
 
 * By passes all certificate checks
 * Unsafe, but currently the only option for untrusted certs.
@@ -727,10 +727,10 @@ Invoke-RestMethod -uri $uri -SkipCertificateCheck
 ### Link Header Pagination
 
 * RFC-5988 Relation `Link` Response Header
-* `Invoke-RestMethod -FollowRelLink`
+* <span class="psCommand">Invoke-RestMethod <span class="dotnetGrey">-FollowRelLink</span></span>
 * Follows to "next" links
-* `Invoke-RestMethod -MaximumFollowRelLink <count>`
-* `Invoke-WebRequest` Returns `RelationLink` property
+* <span class="psCommand">Invoke-RestMethod </span<span class="dotnetGrey">-MaximumFollowRelLink </span><span class="psSigil">$</span><span class="psType">Int</span>
+* <span class="psCommand">Invoke-WebRequest<span> Returns <span class="psType">RelationLink</span> property
 * [#3828](https://github.com/PowerShell/PowerShell/pull/3828) & [#5265](https://github.com/PowerShell/PowerShell/pull/5265)
 
 ---
