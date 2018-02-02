@@ -423,7 +423,7 @@ None of these have any affect:
 
 ### New Parameters in
 
-### Invoke-RestMethod
+### <span class="psCommand">Invoke-RestMethod</span>
 
 * <span class="dotnetGrey">FollowRelLink</span>
 * <span class="dotnetGrey">MaximumFollowRelLink</span>
@@ -476,7 +476,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 
 ### Authentication
 
-* `-Authentication` or `-Auth`
+* <span class="dotnetGrey">-Authentication</span or <span class="dotnetGrey">-Auth</span>
   * Basic
   * Bearer / OAuth
   * None (default)
