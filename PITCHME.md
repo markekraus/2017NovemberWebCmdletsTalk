@@ -476,7 +476,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 
 ### Authentication
 
-* <span class="dotnetGrey">-Authentication</span or <span class="dotnetGrey">-Auth</span>
+* <span class="dotnetGrey">-Authentication</span> or <span class="dotnetGrey">-Auth</span>
   * Basic
   * Bearer / OAuth
   * None (default)
@@ -491,9 +491,9 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 ### Authentication: Basic
 
 * RFC-7617 `Authorization: Basic` Request Header
-* Uses `-Auth Basic`
-* Requires `-Credential`
-* Requires a `PSCredential`
+* Uses <span class="dotnetGrey">-Auth Basic</span>
+* Requires <span class="dotnetGrey">-Credential</span>
+* Requires a <span class="dotnetType">PSCredential</span>
 * `-UseDefaultCredentials` not supported
 
 ```powershell
@@ -509,9 +509,9 @@ Invoke-RestMethod -Auth Basic -Cred $Credential -Uri $uri
 ### Authentication: Bearer and OAuth
 
 * RFC-6750 `Authorization: Bearer` Request Header
-* Uses `-Auth OAuth` or `-Auth Bearer`
-* Requires `-Token`
-* Requires a `SecureString`
+* Uses <span class="dotnetGrey">-Auth OAuth</span> or <span class="dotnetGrey">-Auth Bearer</span>
+* Requires <span class="dotnetGrey">-Token</span>
+* Requires a <span class="dotnetType">SecureString</span>
 
 ```powershell
 $Token = Read-Host -AsSecureString -Prompt "Token"
