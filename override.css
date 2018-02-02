@@ -39,3 +39,10 @@
     font-weight: bold;
     text-transform: none;
 }
+
+.psString {
+    color: #ce9178;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: none;
+}

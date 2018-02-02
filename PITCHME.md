@@ -819,10 +819,10 @@ TestValue
 
 @title[Invoke-RestMethod Null JSON Literal Handling]
 
-### Invoke-RestMethod Null JSON Literal Handling
+### <span class="psCommand">Invoke-RestMethod<span> Null JSON Literal Handling
 
-* Invoke-RestMethod now supports single value `null` JSON Literal
-* Was previously returning string `'null'`
+* <span class="psCommand">Invoke-RestMethod</span> now supports single value `null` JSON Literal
+* Was previously returning string <span class="psString">'null'</span>
 * [#5338](https://github.com/PowerShell/PowerShell/pull/5338)
 
 ---
