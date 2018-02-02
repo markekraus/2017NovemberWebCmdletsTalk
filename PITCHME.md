@@ -538,12 +538,13 @@ reissue the command specifying the AllowUnencryptedAuthentication parameter.</sp
 
 ---
 
-@title[Bypass Auth Errors with -AllowUnencryptedAuthentication]
+@title[Bypass Auth Errors with]
 
-### Bypass Auth Errors with -AllowUnencryptedAuthentication
+### Bypass Auth Errors
 
 * !!! USE HTTPS !!!
-* But when you can't, use `-AllowUnencryptedAuthentication`
+* But when you can't, use
+  <span class="dotnetGrey">-AllowUnencryptedAuthentication</span>
 * [#5052](https://github.com/PowerShell/PowerShell/pull/5052) & [#5402](https://github.com/PowerShell/PowerShell/pull/5402)
 
 ```powershell
@@ -566,8 +567,8 @@ X-Header: Value1
 X-Header: Value2
 ```
 
-* `BasicHtmlWebResponseObject.Headers` now an array
-* `BasicHtmlWebResponseObject.RawContent` now properly displays
+* <span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>Headers</span> now an array
+* <span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>RawContent</span> now properly displays
 * [#4494](https://github.com/PowerShell/PowerShell/pull/4494)
 
 ---
