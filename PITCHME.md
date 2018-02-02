@@ -335,7 +335,8 @@ true
 
 ### No <span class="psCommand">New-WebServiceProxy</span>
 
-* Depended on System.Web.Services.dll not available in CoreFX
+* Depended on System.Web.Services.dll
+* not available in CoreFX
 * Low priority
 * Up For Grabs!
 
@@ -381,10 +382,10 @@ None of these have any affect:
 
 ### No Custom Certificate Validation Support
 
-* Relied on <span class="dotnetType">System.Net.ServicePointManager</span>
-* <span class="dotnetType">HttpClient</span> implements on <span class="psType">HttpClientHandler.ServerCertificateCustomValidationCallback</span>
+* Relied on <span class="dotnetType">System<span class="dotnetGrey">.</span>Net<span class="dotnetGrey">.</span>ServicePointManager</span>
+* <span class="dotnetType">HttpClient</span> implements on <span class="psType">HttpClientHandler<span class="dotnetGrey">.</span>ServerCertificateCustomValidationCallback</span>
 * Targeting Support in 6.1.0
-* `-SkipCertificateCheck` only option for now
+* <span class="dotnetGrey">-SkipCertificateCheck<\span> only option for now
 * [#4899](https://github.com/PowerShell/PowerShell/issues/4899) & [#4970](https://github.com/PowerShell/PowerShell/pull/4970)
 
 ---
