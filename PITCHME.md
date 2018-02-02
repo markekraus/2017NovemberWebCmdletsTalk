@@ -400,11 +400,11 @@ None of these have any affect:
 
 ### New Parameters in Both Cmdlets
 
-* AllowUnencryptedAuthentication
-* Authentication
-* CustomMethod
-* NoProxy
-* PreserveAuthorizationOnRedirect
+* <span class="dotnetGrey">AllowUnencryptedAuthentication</span>
+* <span class="dotnetGrey">Authentication</span>
+* <span class="dotnetGrey">CustomMethod</span>
+* <span class="dotnetGrey">NoProxy</span>
+* <span class="dotnetGrey">PreserveAuthorizationOnRedirect</span>
 
 ---
 
@@ -412,10 +412,10 @@ None of these have any affect:
 
 ### New Parameters in Both Cmdlets (cont.)
 
-* SkipCertificateCheck
-* SkipHeaderValidation
-* SslProtocol
-* Token
+* <span class="dotnetGrey">SkipCertificateCheck</span>
+* <span class="dotnetGrey">SkipHeaderValidation</span>
+* <span class="dotnetGrey">SslProtocol</span>
+* <span class="dotnetGrey">Token</span>
 
 ---
 
@@ -425,9 +425,9 @@ None of these have any affect:
 
 ### Invoke-RestMethod
 
-* FollowRelLink
-* MaximumFollowRelLink
-* ResponseHeadersVariable
+* <span class="dotnetGrey">FollowRelLink</span>
+* <span class="dotnetGrey">MaximumFollowRelLink</span>
+* <span class="dotnetGrey">ResponseHeadersVariable</span>
 
 ---
 
