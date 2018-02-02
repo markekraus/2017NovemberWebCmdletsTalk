@@ -575,9 +575,9 @@ X-Header: Value2
 
 @title[BasicHtmlWebResponseObject.Headers Performance Enhancement]
 
-### BasicHtmlWebResponseObject.
+### Performance Enhancement
 
-### Headers Performance Enhancement
+<span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>Headers</span>
 
 * Headers dictionary builds only once on first access
 * Windows PowerShell creates a new dictionary on every access
