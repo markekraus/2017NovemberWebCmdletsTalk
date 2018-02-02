@@ -276,7 +276,7 @@ Windows PowerShell 5.1:
 
 * <span class="dotnetType">HttpClient</span> supports only <span class="dotnetGrey">HTTP:</span> and <span class="dotnetGrey">HTTPS:</span>
 * No <span class="dotnetGrey">FTP:</span> or <span class="dotnetGrey">FILE:</span>
-* <span class="psCommand">Invoked-Download</span> ???
+* <span class="psCommand">Invoke-Download</span> ???
 * Issue [#5491](https://github.com/PowerShell/PowerShell/issues/5491)
 
 ---
@@ -313,7 +313,7 @@ BasicHtmlWebResponseObject
 
 ### Basic Parsing Only (cont.)
 
-* <span class="psType">Forms</span> and <span class="psType">ParsedHtml</span Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
+* <span class="psType">Forms</span> and <span class="psType">ParsedHtml</span> Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
 
 ```powershell
 $Result.Links.Count
