@@ -729,8 +729,8 @@ Invoke-RestMethod -uri $uri -SkipCertificateCheck
 * RFC-5988 Relation `Link` Response Header
 * <span class="psCommand">Invoke-RestMethod <span class="dotnetGrey">-FollowRelLink</span></span>
 * Follows to "next" links
-* <span class="psCommand">Invoke-RestMethod </span<span class="dotnetGrey">-MaximumFollowRelLink </span><span class="psSigil">$</span><span class="psType">Int</span>
-* <span class="psCommand">Invoke-WebRequest<span> Returns <span class="psType">RelationLink</span> property
+* <span class="psCommand">Invoke-RestMethod </span><span class="dotnetGrey">-MaximumFollowRelLink </span><span class="psSigil">$</span><span class="psType">Int</span>
+* <span class="psCommand">Invoke-WebRequest</span> Returns <span class="psType">RelationLink</span> property
 * [#3828](https://github.com/PowerShell/PowerShell/pull/3828) & [#5265](https://github.com/PowerShell/PowerShell/pull/5265)
 
 ---
