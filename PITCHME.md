@@ -635,7 +635,7 @@ Content-Type                     {application/json}
   * Tls - TLS 1.0
   * Tls11 - TLS 1.1
   * Tls12 - TLS 1.2
-* `Flags` can support multiple
+* Flags - can support multiple
 * [#5329](https://github.com/PowerShell/PowerShell/pull/5329)
 
 ---
