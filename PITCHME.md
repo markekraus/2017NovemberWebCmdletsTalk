@@ -591,7 +591,7 @@ X-Header: Value2
 
 * APIs return useful Response Headers
 * Not in Windows PowerShell <span class="psCommand">Invoke-RestMethod</span>
-* <span class="dotnetGrey">-ResponseHeadersVariable</span> <span class="dotnetGrey">-RHV</span>
+* <span class="dotnetGrey">-ResponseHeadersVariable</span> <span class="dotnetGrey"> or -RHV</span>
 * Like <span class="dotnetGrey">-SessionVariable</span>
 * Same as <span class="psType">BasicHtmlWebResponseObject<span class="dotnetGrey">.</span>Headers</span>
 * [#4888](https://github.com/PowerShell/PowerShell/pull/4888)
