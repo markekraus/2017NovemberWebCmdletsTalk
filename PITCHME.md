@@ -4,6 +4,8 @@
 
 ## Web Cmdlets In Depth
 
+<span class="psCommand">Invoke-WebRequest</span> and <span class="psCommand">Invoke-RestMethod</span>
+
 February 2018
 
 @ SoCal PowerShell User Group
@@ -85,7 +87,7 @@ PowerShell Core 6.0.1
 ### Strict Request Headers Parsing
 
 * Strict Request Headers parsing default
-* Use `-SkipHeaderValidation` to bypass for `-Headers` and `-UserAgent`
+* Use <span class="dotnetGrey">-SkipHeaderValidation</span> to bypass for <span class="dotnetGrey">-Headers</span> and <span class="dotnetGrey">-UserAgent</span>
 * [#4085](https://github.com/PowerShell/PowerShell/pull/4085) and [#4479](https://github.com/PowerShell/PowerShell/pull/4479)
 
 ---
@@ -153,7 +155,7 @@ Move from <span class="dotnetType">HttpWebResponse</span> to <span class="dotnet
 @title[Move from HttpWebResponse to HttpResponseMessage (cont.)]
 
 * Error handling changed
-* `Exception.Response`
+* <span class="psType">Exception<span class="dotnetGrey">.</span>Response</span>
 
 ```powershell
 Invoke-RestMethod -Uri https://httpbin.org/status/404
@@ -270,11 +272,11 @@ Windows PowerShell 5.1:
 
 @title[No FTP: or FILE: Support]
 
-### No FTP: or FILE: Support
+### No <span class="dotnetGrey">FTP:</span> or <span class="dotnetGrey">FILE:</span> Support
 
-* `HttpClient` supports only `HTTP:` and `HTTPS:`
-* No `FTP:` or `FILE:`
-* `Invoked-Download` ???
+* <span class="dotnetType">HttpClient</span> supports only <span class="dotnetGrey">HTTP:</span> and <span class="dotnetGrey">HTTPS:</span>
+* No <span class="dotnetGrey">FTP:</span> or <span class="dotnetGrey">FILE:</span>
+* <span class="psCommand">Invoked-Download</span> ???
 * Issue [#5491](https://github.com/PowerShell/PowerShell/issues/5491)
 
 ---
@@ -285,7 +287,7 @@ Windows PowerShell 5.1:
 
 * Parsing depended on IE and COM not available in Core
 * Would not have been cross-platform
-* The future is `ConvertFrom-Html`
+* The future is <span class="psCommand">ConvertFrom-Html</span>
 * [AngleSharp](https://github.com/AngleSharp/AngleSharp) engine
 * Hopefully for 6.2.0
 
@@ -311,7 +313,7 @@ BasicHtmlWebResponseObject
 
 ### Basic Parsing Only (cont.)
 
-* `Forms` and `ParsedHtml` Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
+* <span class="psType">Forms</span> and <span class="psType">ParsedHtml</span Removed in [#5376](https://github.com/PowerShell/PowerShell/pull/5376)
 
 ```powershell
 $Result.Links.Count
@@ -331,9 +333,9 @@ true
 
 @title[No New-WebServiceProxy]
 
-### No `New-WebServiceProxy`
+### No <span class="psCommand">New-WebServiceProxy</span>
 
-* Depended on `System.Web.Services.dll` not available in CoreFX
+* Depended on System.Web.Services.dll not available in CoreFX
 * Low priority
 * Up For Grabs!
 
@@ -343,10 +345,10 @@ true
 
 ### macOS SSL/TLS/Certificate Partial Feature Support
 
-* CoreFX wraps `libcurl`
-* macOS `libcurl` not all using OpenSSL
+* CoreFX wraps libcurl
+* macOS libcurl not all using OpenSSL
 * Flaky support for various new security and encryption features
-* May see the same on *nix distros with Non-OpenSSL `libcurl`
+* May see the same on *nix distros with Non-OpenSSL libcurl
 
 ---
 
@@ -362,7 +364,7 @@ true
 
 @title[No ServicePointManager Support]
 
-### No ServicePointManager Support
+### No <span class="dotnetType">ServicePointManager</span> Support
 
 None of these have any affect:
 
@@ -379,8 +381,8 @@ None of these have any affect:
 
 ### No Custom Certificate Validation Support
 
-* Relied on `System.Net.ServicePointManager`
-* `HttpClient` implements on `HttpClientHandler.ServerCertificateCustomValidationCallback`
+* Relied on <span class="dotnetType">System.Net.ServicePointManager</span>
+* <span class="dotnetType">HttpClient</span> implements on <span class="psType">HttpClientHandler.ServerCertificateCustomValidationCallback</span>
 * Targeting Support in 6.1.0
 * `-SkipCertificateCheck` only option for now
 * [#4899](https://github.com/PowerShell/PowerShell/issues/4899) & [#4970](https://github.com/PowerShell/PowerShell/pull/4970)
