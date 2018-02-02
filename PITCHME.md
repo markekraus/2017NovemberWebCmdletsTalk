@@ -531,7 +531,8 @@ $uri = 'http://google.com'
 Invoke-RestMethod -Auth Basic -Cred $Credential -Uri $uri
 ```
 
-<span class="psError">Invoke-RestMethod : The cmdlet cannot protect plain text secrets sent over unencrypted connections.
+<span class="psError" style="font-size: 50%;">Invoke-RestMethod :
+The cmdlet cannot protect plain text secrets sent over unencrypted connections.
 To suppress this warning and send plain text secrets over unencrypted networks,
 reissue the command specifying the AllowUnencryptedAuthentication parameter.</span>
 
