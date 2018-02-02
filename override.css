@@ -25,3 +25,10 @@
     font-weight: bold;
     text-transform: none;
 }
+
+.psError {
+    color: #cc0000;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: none;
+}
