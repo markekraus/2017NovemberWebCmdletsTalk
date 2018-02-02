@@ -782,10 +782,10 @@ prev  api.github.com/repositories/49609581/issues?page=1
 
 @title[Multipart/form-data Support]
 
-### Multipart/form-data Support
+### <span class="dotnetGrey">Multipart/form-data</span> Support
 
-* `-Body`
-* `System.Net.Http.MultipartFormDataContent`
+* <span class="dotnetGrey">-Body</span>
+* <span class="dotnetType">System<span class="dotnetGrey">.</span>Net<span class="dotnetGrey">.</span>Http<span class="dotnetGrey">.</span>MultipartFormDataContent</span>
 * [#4782](https://github.com/PowerShell/PowerShell/pull/4782)
 
 ---
