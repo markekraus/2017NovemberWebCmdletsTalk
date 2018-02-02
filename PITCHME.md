@@ -585,7 +585,7 @@ X-Header: Value2
 
 ---
 
-@title[-ResponseHeadersVariable on Invoke-RestMethod]
+@title[-ResponseHeadersVariable]
 
 ### <span class="dotnetGrey">-ResponseHeadersVariable</span>
 
@@ -628,7 +628,7 @@ Content-Type                     {application/json}
 
 @title[-SslProtocol Parameter]
 
-### -SslProtocol
+### <span class="dotnetGrey">-SslProtocol</span>
 
 * Supports
   * Default (TLS 1.0, TLS 1.1, and TLS 1.2)
@@ -652,9 +652,9 @@ Invoke-WebRequest -uri $uri -SslProtocol 'Ts12, Tls11'
 
 @title[-CustomMethod Parameter]
 
-### -CustomMethod
+### <span class="dotnetGrey">-CustomMethod</span>
 
-* For custom request methods not supported by `-Method`
+* For custom request methods not supported by <span class="dotnetGrey">-Method</span>
 * [#3142](https://github.com/PowerShell/PowerShell/pull/3142)
 
 ```powershell
@@ -673,7 +673,7 @@ PURIFY
 
 @title[-NoProxy Parameter]
 
-### -NoProxy
+### <span class="dotnetGrey">-NoProxy</span>
 
 * Bypass a default proxy if one is set on the system
 * [#3447](https://github.com/PowerShell/PowerShell/pull/3447)
@@ -687,7 +687,7 @@ Invoke-RestMethod -uri $uri -NoProxy
 
 @title[-PreserveAuthorizationOnRedirect Parameter]
 
-### -PreserveAuthorizationOnRedirect
+### <span class="dotnetGrey">-PreserveAuthorizationOnRedirect</span>
 
 * Allows `Authorization` header to be sent when request is redirected.
 * [#3885](https://github.com/PowerShell/PowerShell/pull/3885)
