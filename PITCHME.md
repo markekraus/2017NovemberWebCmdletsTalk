@@ -103,9 +103,7 @@ $Params = @{
 Invoke-RestMethod @Params
 ```
 
-```none
-Invoke-RestMethod : The format of value '12345' is invalid.
-```
+<span class="psError" style="font-size: 70%;">Invoke-RestMethod : The format of value '12345' is invalid.</span>
 
 ```powershell
 $Params = @{
