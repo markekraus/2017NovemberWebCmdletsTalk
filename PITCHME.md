@@ -109,9 +109,8 @@ Invoke-RestMethod @Params
 $Params = @{
     Headers = @{"if-match" ="12345"}
     Uri = "http://httpbin.org/headers"
-    SkipHeaderValidation = $true
 }
-Invoke-RestMethod @Params
+Invoke-RestMethod @Params -SkipHeaderValidation
 ```
 
 ---
