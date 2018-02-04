@@ -226,10 +226,7 @@ Windows PowerShell 5.1:
 
 PowerShell Core 6.0.1:
 
-```none
-Cannot convert the "System.String[]" value of type
-"System.String[]" to type "System.Int32".
-```
+<span class="psError" style="font-size: 70%;">Cannot convert the "System.String[]" value of type "System.String[]" to type "System.Int32".</span>
 
 ---
 
