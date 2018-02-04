@@ -240,7 +240,7 @@ Comma Join:
 [int]$Expires = $Result.Headers.'Expires' -join ','
 ```
 
-`Select-Object`
+<span class="psCommand">Select-Object</span>
 
 ```powershell
 [int]$Expires = $Result.Headers.'Expires' |
