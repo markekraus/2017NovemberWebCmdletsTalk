@@ -491,7 +491,7 @@ Mozilla/5.0 (Macintosh; Darwin 17.0.0 Darwin
 * Uses <span class="dotnetGrey">-Auth Basic</span>
 * Requires <span class="dotnetGrey">-Credential</span>
 * Requires a <span class="dotnetType">PSCredential</span>
-* `-UseDefaultCredentials` not supported
+* <span class="dotnetGrey">-UseDefaultCredentials</span> not supported
 
 ```powershell
 $Credential = Get-Credential
