@@ -88,8 +88,8 @@ PowerShell Core 6.0.1
 
 * Strict Request Headers parsing default
 * Use <span class="dotnetGrey">-SkipHeaderValidation</span> to bypass for <span class="dotnetGrey">-Headers</span> and <span class="dotnetGrey">-UserAgent</span>
-* For <span class="dotnetGrey">-ContentType</span> in 6.1.0 [#6018](https://github.com/PowerShell/PowerShell/pull/6018)
 * [#4085](https://github.com/PowerShell/PowerShell/pull/4085) and [#4479](https://github.com/PowerShell/PowerShell/pull/4479)
+* For <span class="dotnetGrey">-ContentType</span> in 6.1.0 [#6018](https://github.com/PowerShell/PowerShell/pull/6018)
 
 ---
 
