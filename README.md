@@ -13,3 +13,9 @@ This project contains notes and code snippets from Mark Kraus's presentation on 
 * [Group Info](https://www.meetup.com/Jacksonville-PowerShell-User-Group/)
 * [Presentation](https://gitpitch.com/markekraus/2017NovemberWebCmdletsTalk/2018January#/)
 * [Repository](https://github.com/markekraus/2017NovemberWebCmdletsTalk/tree/2018January)
+
+## February 2018 @ SoCal PowerShell User Group
+
+* [Group Info](https://www.meetup.com/SoCal-PowerShell-user-group)
+* [Presentation](https://gitpitch.com/markekraus/2017NovemberWebCmdletsTalk/2018February#/)
+* [Repository](https://github.com/markekraus/2017NovemberWebCmdletsTalk/tree/2018February)
