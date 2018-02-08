@@ -641,8 +641,8 @@ Content-Type                     {application/json}
 
 ```powershell
 $uri = 'https://google.com'
-Invoke-WebRequest -uri $uri -SslProtocol 'Ts12'
-Invoke-WebRequest -uri $uri -SslProtocol 'Ts12, Tls11'
+Invoke-WebRequest -uri $uri -SslProtocol 'Tls12'
+Invoke-WebRequest -uri $uri -SslProtocol 'Tls12, Tls11'
 ```
 
 ---
